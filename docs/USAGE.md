@@ -2,23 +2,23 @@
 
 # Usage Guide
 
-## ▶️ Running the Application
-``` c
-// TODO: Explain how to launch the project.
-// Add commands or steps here.
 ```
-``` bash
-# Example
-npm start
+## ▶️ Running the Application
+It is A banking system that has additional feactures compared to a normal banking system
+It is called Fuxion
+
+// it is made from java script and html
 ```
 
+
 ## 🖥️ How to Use
-``` c
-// TODO: Provide step-by-step usage instructions for judges/users.
+
+
 ```
-1. Step 1 -> Do this
-2. Step 2 -> Then this
-3. Step 3 -> See the output/result
+1. Step 1 -> The first thing you must do is to login or create your login details if you are a first time user
+2. Step 2 -> then you can deposit money withdraw send to people
+3. Step 3 -> you can also set limits write a budget plan and have a monthly goal
+
 
 ## 🎥 Demo
 ``` c
@@ -26,7 +26,7 @@ npm start
 ```
 Check out the Demos: 
 - [Demo Video](../demo/demo.mp4)
-- [Demo Presentation](../demo/demo.pptx)
+- [Demo Presentation](https://1drv.ms/p/c/d2ba08951d1b8f77/ETSq_9phGs9EhK8T9_ho9gIBsEpmZYN-UJ8Jf0IPO7LkCQ?e=RBTAnh../demo/demo.pptx)
 
 ## 📌 Notes
 ``` c
