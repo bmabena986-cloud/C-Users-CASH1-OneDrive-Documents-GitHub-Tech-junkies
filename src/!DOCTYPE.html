@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fuxion Banking System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000428, #004e92);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    input, select, button, textarea {
+      margin: 8px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    textarea {
+      width: 90%;
+      resize: none;
+    }
+    button {
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+    }
+    ul {
+      text-align: left;
+      max-height: 150px;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .section {
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    #calc button {
+      width: 50px;
+      height: 40px;
+      margin: 3px;
+      font-size: 16px;
+    }
+    #calc input {
+      width: 220px;
+      font-size: 18px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>💠 Fuxion Banking System 💠</h1>
+
+  <!-- Pass Name & PIN -->
+  <div id="passSection" class="container">
+    <h2>Enter Pass Name & PIN</h2>
+    <input type="text" id="passName" placeholder="Pass Name">
+    <input type="password" id="pinCode" placeholder="4-digit PIN" maxlength="4">
+    <button onclick="enterSystem()">Continue</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="container" style="display:none;">
+    <h2>Welcome to Fuxion</h2>
+    <p id="balance">Balance: R0</p>
+    <p id="limit">Limit: R0</p>
+
+    <div class="section">
+      <h3>Deposit</h3>
+      <input type="number" id="depositAmount" placeholder="Enter amount">
+      <button onclick="deposit(document.getElementById('depositAmount').value)">Deposit</button>
+    </div>
+
+    <div class="section">
+      <h3>Withdraw</h3>
+      <input type="number" id="withdrawAmount" placeholder="Enter amount">
+      <button onclick="withdraw(document.getElementById('withdrawAmount').value)">Withdraw</button>
+    </div>
+
+    <div class="section">
+      <h3>Pay</h3>
+      <input type="number" id="payAmount" placeholder="Enter amount">
+      <input type="text" id="payAccount" placeholder="Recipient Account No.">
+      <select id="payBank">
+        <option value="ABSA">ABSA</option>
+        <option value="CAPITEC">CAPITEC</option>
+        <option value="NEDBANK">NEDBANK</option>
+        <option value="FNB">FNB</option>
+      </select>
+      <button onclick="pay(document.getElementById('payAmount').value, document.getElementById('payBank').value, document.getElementById('payAccount').value)">Pay</button>
+    </div>
+
+    <div class="section">
+      <h3>Set Limit</h3>
+      <input type="number" id="limitAmount" placeholder="Set minimum balance">
+      <button onclick="setLimit(document.getElementById('limitAmount').value)">Set Limit</button>
+    </div>
+
+    <div class="section">
+      <h3>Budget Plan</h3>
+      <textarea id="budgetPlan" placeholder="Write your budget plan here..."></textarea><br>
+      <button onclick="setBudget()">Save Budget</button>
+      <p id="showBudget"></p>
+    </div>
+
+    <div class="section">
+      <h3>Monthly Goal</h3>
+      <textarea id="monthlyGoal" placeholder="Write your monthly goal here..."></textarea><br>
+      <button onclick="setGoal()">Save Goal</button>
+      <p id="showGoal"></p>
+    </div>
+
+    <div class="section">
+      <h3>Transaction History</h3>
+      <ul id="history"></ul>
+    </div>
+
+    <div class="section" id="calc">
+      <h3>Calculator</h3>
+      <input type="text" id="calcDisplay" disabled><br>
+      <button onclick="calcInput('7')">7</button>
+      <button onclick="calcInput('8')">8</button>
+      <button onclick="calcInput('9')">9</button>
+      <button onclick="calcInput('/')">÷</button><br>
+      <button onclick="calcInput('4')">4</button>
+      <button onclick="calcInput('5')">5</button>
+      <button onclick="calcInput('6')">6</button>
+      <button onclick="calcInput('*')">×</button><br>
+      <button onclick="calcInput('1')">1</button>
+      <button onclick="calcInput('2')">2</button>
+      <button onclick="calcInput('3')">3</button>
+      <button onclick="calcInput('-')">−</button><br>
+      <button onclick="calcInput('0')">0</button>
+      <button onclick="calcInput('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="calcInput('+')">+</button><br>
+      <button onclick="clearCalc()">C</button>
+    </div>
+  </div>
+
+  <script>
+    let balance = 0;
+    let limit = 0;
+    let transactions = [];
+    let budgetPlan = "";
+    let monthlyGoal = "";
+
+    function enterSystem() {
+      const passName = document.getElementById("passName").value;
+      const pin = document.getElementById("pinCode").value;
+
+      if (!passName || !pin) {
+        alert("Please enter both Pass Name and PIN.");
+        return;
+      }
+      if (pin.length !== 4 || isNaN(pin)) {
+        alert("PIN must be exactly 4 digits.");
+        return;
+      }
+
+      document.getElementById("passSection").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+      alert("Welcome " + passName + "!");
+      updateDashboard();
+    }
+
+    function deposit(amount) {
+      amount = parseFloat(amount);
+      if (amount > 0) {
+        balance += amount;
+        recordTransaction("Deposit", amount);
+        updateDashboard();
+      } else {
+        alert("Invalid deposit amount.");
+      }
+    }
+
+    function withdraw(amount) {
+      amount = parseFloat(amount);
+      if (amount > 0 && balance - amount >= limit) {
+        balance -= amount;
+        recordTransaction("Withdraw", amount);
+        updateDashboard();
+      } else {
+        alert("Cannot withdraw. Balance would fall below limit.");
+      }
+    }
+
+    function pay(amount, bank, account) {
+      amount = parseFloat(amount);
+      if (amount > 0 && account && balance - amount >= limit) {
+        balance -= amount;
+        recordTransaction("Pay to " + bank + " (" + account + ")", amount);
+        updateDashboard();
+      } else {
+        alert("Payment denied. Check balance and account number.");
+      }
+    }
+
+    function setLimit(newLimit) {
+      limit = parseFloat(newLimit);
+      if (limit >= 0) {
+        alert("Limit set to: R" + limit);
+        updateDashboard();
+      } else {
+        alert("Invalid limit value.");
+      }
+    }
+
+    function setBudget() {
+      budgetPlan = document.getElementById("budgetPlan").value;
+      document.getElementById("showBudget").innerText = "Your Budget Plan: " + budgetPlan;
+    }
+
+    function setGoal() {
+      monthlyGoal = document.getElementById("monthlyGoal").value;
+      document.getElementById("showGoal").innerText = "Your Monthly Goal: " + monthlyGoal;
+    }
+
+    function recordTransaction(type, amount) {
+      let date = new Date().toLocaleDateString();
+      transactions.push({ type: type, amount: amount, date: date });
+      document.getElementById("history").innerHTML += `<li>${date}: ${type} - R${amount}</li>`;
+    }
+
+    function updateDashboard() {
+      document.getElementById("balance").innerText = "Balance: R" + balance;
+      document.getElementById("limit").innerText = "Limit: R" + limit;
+    }
+
+    // Basic Calculator
+    function calcInput(value) {
+      document.getElementById("calcDisplay").value += value;
+    }
+    function clearCalc() {
+      document.getElementById("calcDisplay").value = "";
+    }
+    function calculate() {
+      try {
+        let result = eval(document.getElementById("calcDisplay").value);
+        document.getElementById("calcDisplay").value = result;
+      } catch {
+        alert("Invalid calculation.");
+        clearCalc();
+      }
+    }
+  </script>
+</body>
+</html>
