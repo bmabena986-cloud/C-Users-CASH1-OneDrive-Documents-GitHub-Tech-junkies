@@ -22,8 +22,8 @@ Follow the steps below to set up and run the project. (Example)
 ## ⚙️ Installation
 ``` bash
 # Clone the repository
-git clone <your-repo-url>
-cd <repo-name>
+git clone <https://github.com/bmabena986-cloud/C-Users-CASH1-OneDrive-Documents-GitHub-Tech-junkies.git>
+cd <Fuxion>
 
 # Install dependencies
 <insert command here>
@@ -31,5 +31,5 @@ cd <repo-name>
 
 ## ▶️ Running the Project
 ``` bash
-<insert run command here> # Or an explanation on what to do
+< FOR the code it is loaded on the src of the banking system
 ```
