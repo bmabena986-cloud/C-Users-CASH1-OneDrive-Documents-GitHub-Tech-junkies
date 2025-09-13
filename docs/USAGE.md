@@ -25,7 +25,7 @@ It is called Fuxion
 // TODO: Link your demo video and PowerPoint here
 ```
 Check out the Demos: 
-- [Demo Video](../demo/demo.mp4)
+- [Demo Video](https://github.com/bmabena986-cloud/C-Users-CASH1-OneDrive-Documents-GitHub-Tech-junkies/blob/master/demo/WhatsApp%20Video%202025-09-13%20at%2023.16.43.mp4../demo/demo.mp4)
 - [Demo Presentation](https://1drv.ms/p/c/d2ba08951d1b8f77/ETSq_9phGs9EhK8T9_ho9gIBsEpmZYN-UJ8Jf0IPO7LkCQ?e=RBTAnh../demo/demo.pptx)
 
 ## 📌 Notes
