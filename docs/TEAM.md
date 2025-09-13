@@ -5,23 +5,23 @@
 # Team Information
 
 ## ⚒️ Team Name
-``` c
+Tech junkies
 // TODO: Fill-in the name of your team.
 ```
 
 ## 👥 Members
 | Name     | Role                | Institution           | Discord Handle | Email |
 |----------|---------------------|-----------------------| -------------------|-------------|
-| **Name 1**   | Backend Developer   | University of Cape Town | name1 | <email1@gmail.com> |
-| **Name 2**   | Frontend Developer  | University of the Witwatersrand | name2 | <email2@gmail.com> |
-| **Name 3**   | Designer            | University of Johannesburg | name3 | <email3@gmail.com> |
-| **Name 4**   | Q.A Tester          | University of the Western Cape | name4 | <email4@gmail.com> |
+| Bheki   | Backend Developer   | University of north-west | name1 | <bmabena986@gmail.com> |
+| Bheki   | Frontend Developer  | University of north-west | name2 | <bmabena986@gmail.com> |
+| Maanda   | Designer            | University of north-west | name3 | <maandan96@gmail.com> |
+| Maanda   | Q.A Tester          | University of north-west | name4 | <maandan96@gmail.com> |
 
 ## 🏫 Institution
 ``` c
 // TODO: Fill-in the name of the institution your
 // team is competing under.
-```
+University of North-west
 
 ## 📧 Other Contact Info
 - GitHub Repo: <https://github.com/user-name/repo-name>
